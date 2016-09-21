@@ -1,0 +1,6 @@
+-Bon résultat
+-Code efficace
+	pas de copier/coller de calculs
+	tableaux
+-Eviter pré-calcul en dur
+-Calcul traitement affichage(code html)

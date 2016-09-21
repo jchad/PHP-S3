@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<HTML>
+	<?php
+    include_once("connexion.php");
+	 ?>
+	<HEAD>
+		<title>Calcul d'impôts</title>
+		<META charset='utf-8'>
+	</HEAD>
+	<BODY>
+
+
+	</BODY>
+</HTML>

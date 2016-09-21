@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <?php
-	require_once("connexion.php");
+	require_once("fonctions/connexion.php");
 	$bdd= connexion_db();
-	$req=$bdd->query('SELECT Titre, Année, Score, Votes FROM Movie');
+	$req=$bdd->query('SELECT * FROM Movie');
 	$data=$req->fetchAll(PDO::FETCH_ASSOC);
 	$count=$req->rowCount();
  ?>
@@ -18,7 +18,7 @@
 			echo '<p>'.$count. ' film(s) trouvé(s) dans la base de données</p>';
 			echo '<table><tr><th>Titre</th><th>Année</th><th>Score</th><th>Votes</th>';
 			foreach($data as $ligne)
-				echo '<tr><td>'.$ligne['Titre'].'</td><td>'.$ligne['Année'].'</td><td>'.$ligne['Score'].'</td><td>'.$ligne['Votes'].'</td><tr>';
+				echo '<tr><td>'.$ligne['Titre'].'</td><td>'.$ligne['Année'].'</td><td>'.$ligne['Score'].'</td><td>'.$ligne['Votes'].'</td><td><a href="http://localhost/php/PHP-S3/TD2/castingV1.php?movieid='.$ligne['MovieID'].'">détails</a></td><tr>';
 			echo '</table>';
 		 ?>
 

@@ -18,7 +18,7 @@
 			echo '<p>'.$count. ' film(s) trouvé(s) dans la base de données</p>';
 			echo '<table><tr><th>Titre</th><th>Année</th><th>Score</th><th>Votes</th>';
 			foreach($data as $ligne)
-				echo '<tr><td>'.$ligne['Titre'].'</td><td>'.$ligne['Année'].'</td><td>'.$ligne['Score'].'</td><td>'.$ligne['Votes'].'</td><td><a href="http://localhost/php/PHP-S3/TD2/castingV1.php?movieid='.$ligne['MovieID'].'">détails</a></td><tr>';
+				echo '<tr><td>'.$ligne['Titre'].'</td><td>'.$ligne['Année'].'</td><td>'.$ligne['Score'].'</td><td>'.$ligne['Votes'].'</td><td><a href="http://localhost/php/PHP-S3/TD2/casting.php?movieid='.$ligne['MovieID'].'">détails</a></td><tr>';
 			echo '</table>';
 		 ?>
 

@@ -1,0 +1,16 @@
+table,th, td{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td{
+  padding: 3px;
+}
+
+html{
+  background-image: url('sayagata-400px.png');
+}
+
+th{
+  color:red;
+}

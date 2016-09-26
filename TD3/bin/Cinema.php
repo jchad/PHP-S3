@@ -1,7 +1,6 @@
 <?php
-                $host ="localhost";
-                $user ="root";
-                $password="";
-                $nombase="coursphp";
-        }
+  $host ="localhost";
+  $user ="root";
+  $password="";
+  $nombase="coursphp";
  ?>

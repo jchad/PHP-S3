@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="./Web/CSS/styles.css">
   </head>
   <body>
+    <?php echo $menu ?>
     <section><?php echo $contenu ?></section>
   </body>
 </html>

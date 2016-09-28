@@ -14,3 +14,35 @@ html{
 th{
   color:red;
 }
+
+#erreur{
+  color:red;
+  font-weight: bold;
+  font-size:36px;
+  text-align: center;
+}
+
+nav a{
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+  padding: 8px 32px;
+  border: 1px solid black
+}
+nav a:hover{
+  text-decoration:underline;
+}
+
+h1{
+  text-align: center;
+  color:red;
+  padding-bottom: 10px;
+  font-size: 36px;
+}
+table{
+  text-align: center;
+}
+
+html{
+  background-image: url('sayagata-400px.png');
+}

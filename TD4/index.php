@@ -1,6 +1,11 @@
 <?php
-  if (isset($_GET['action']) && $_GET['action']='connection'){
-    require("Views/connection.php");
+  session_start();
+  if (isset($_GET['action']) && $_GET['action']=='logout'){
+    session_destroy ();
+    header('Location: index.php');
+    exit(0); // ou exit (); ou exit ;
+  }
+  if (isset($_GET['action']) && $_GET['action']=='connection'){
     if(isset($_POST['username']) && isset($_POST['password'])){
         $username=$_POST['username'];
         $password=$_POST['password'];
@@ -8,19 +13,19 @@
         require("Model/ConnectionManager.php");
         $cm = new ConnectionManager();
         $results4= $cm->getConnection($username);
-        if ($results4 ==NULL){
+        if ($results4==NULL){
           $erreur='Utilisateur inexistant';
-          require("Views/error.php");
         }else{
-          if($results4 != $password){
-            $erreur='Mot de passe incorect';
-            require("Views/error.php");
-          }else{
+          if($results4==$password){
             $_SESSION['login']=$username;
-
+            header ('Location: index.php');
+            exit (0); // ou exit (); ou exit ;
+          }else{
+            $erreur='Mot de passe incorect';
           }
         }
     }
+    require("Views/connection.php");
   }
   else{
     require("Model/Model.php");
@@ -35,6 +40,14 @@
       else{
         $results2= $fm->getFilmDetails($movieid);
         $results3= $fm->getCasting($movieid);
+        if(isset($_SESSION['login'])){
+          $results5= $fm->getVoteFilm($movieid,$_SESSION['login']);
+        }
+        if (isset($_GET['action']) && $_GET['action']=='vote'){
+          $fm->setVoteFilm($movieid,$_SESSION['login']);
+          header ('Location: index.php?movieid='.$movieid.'');
+          exit (0); // ou exit (); ou exit ;
+        }
         if ($results2==NULL){
           $erreur='Identifiant de film incorrect';
           require("Views/error.php");
@@ -50,4 +63,5 @@
       require("Views/films.php");
       }
   }
+
 ?>

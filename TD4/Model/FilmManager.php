@@ -39,12 +39,10 @@
       $results=$req->fetch(PDO::FETCH_ASSOC);
       $req->closeCursor();
       $sql2 = 'Insert into Vote(MovieID,UserID) values(:p_movieid,:p_userid)';
-      $results2 = self::getBdd()->prepare($sql2);
-      $results2->execute(array('p_movieid' => $movieid,'p_userid' => $results['UserID']));
+      $results2= $this->executerRequete($sql2, array('p_movieid' => $movieid,'p_userid' => $results['UserID']));
       $results2->closeCursor();
       $sql3 = 'Update movie SET Votes = Votes+1 where MovieID = :p_movieid';
-      $results3 = self::getBdd()->prepare($sql3);
-      $results3->execute(array('p_movieid' => $movieid));
+      $results3 = $this->executerRequete($sql3, array('p_movieid' => $movieid));
       $results3->closeCursor();
     }
   }

@@ -16,7 +16,7 @@
 			return $resultat;
 		}
 
-		protected static function getBdd() {
+		private static function getBdd() {
 			if(self::$bdd == null){
 				require './bin/Cinema.php';
 

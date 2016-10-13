@@ -8,7 +8,7 @@
   if (isset($_GET['action']) && $_GET['action']=='connection'){
     if(isset($_POST['username']) && isset($_POST['password'])){
         $username=$_POST['username'];
-        $password=$_POST['password'];
+        $password=sha1($_POST['password']);
         require("Model/Model.php");
         require("Model/ConnectionManager.php");
         $cm = new ConnectionManager();

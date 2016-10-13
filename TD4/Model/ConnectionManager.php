@@ -5,7 +5,10 @@
       $sql = 'Select Pass from Utilisateur where Login = :identifiant';
 			$req= $this->executerRequete($sql, array('identifiant' => $Login));
 			$results = $req->fetch();
+      $req->closeCursor();
 			return $results['Pass'];
     }
+
+
   }
 ?>

@@ -18,13 +18,14 @@
     }
 
     public function removeCode($Login){
-      $sql = 'UPDATE utitilisateur SET Code=NULL where Login = :indentifiant';
+      $sql = 'UPDATE utilisateur SET Code=NULL where Login = :identifiant';
       $req= $this->executerRequete($sql, array('identifiant' => $Login));
+      $req->closeCursor();
     }
 
     public function sendMail($emaildest, $message_txt, $message_html, $sujet){
-      $mail = 'democontactphp@gmail.com'; // Déclaration de l'adresse de destination.
-      if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
+      //$mail = 'democontactphp@gmail.com'; // Déclaration de l'adresse de destination.
+      if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $emaildest)) // On filtre les serveurs qui rencontrent des bogues.
       {
       	$passage_ligne = "\r\n";
       }
@@ -62,7 +63,7 @@
       //==========
 
       //=====Envoi de l'e-mail.
-      mail($mail,$sujet,$message,$header);
+      mail($emaildest,$sujet,$message,$header);
       //==========
     }
 

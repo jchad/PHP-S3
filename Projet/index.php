@@ -1,5 +1,6 @@
 <?php
   session_start();
+  require("Model/Model.php");
   if (isset($_GET['action'])){
     if ($_GET['action']=='logout'){
       session_destroy ();
@@ -16,13 +17,19 @@
           $prenom=$_POST['surname'];
           $mail=$_POST['email'];
           if($password!=$passwordbis){
-              $erreur='Les deux mots de passe ne sont pas identiques.';
+            $erreur='Les deux mots de passe ne sont pas identiques.';
           }
           else{
-            require("Model/Model.php");
+
             require("Model/ConnectionManager.php");
+            require("Model/MailManager.php");
             $cm = new ConnectionManager();
-            $results6= $cm->createUser($username, $password, $nom, $prenom, $mail);
+            $cm->createUser($username, $password, $nom, $prenom, $mail);
+            $mm = new MailManager();
+            $typemail='register';
+            require("Web/Mail.php");
+            mail($mail,$sujet,$message_txt);
+            $mm->sendMail($mail, $message_txt, $message_html, $sujet);
             $_SESSION['login']=$username;
             header ('Location: index.php?action=validation');
             exit (0); // ou exit (); ou exit ;
@@ -35,7 +42,7 @@
           if(isset($_POST['username']) && isset($_POST['password'])){
               $username=$_POST['username'];
               $password=sha1($_POST['password']);
-              require("Model/Model.php");
+
               require("Model/ConnectionManager.php");
               require("Model/MailManager.php");
               $cm = new ConnectionManager();
@@ -47,11 +54,12 @@
                 if($results4!=$password){
                   $erreur='Mot de passe incorect';
                 }else{
+                  $_SESSION['login']=$username;
                   $results8= $mm->getCode($username);
                   if($results8!=NULL){  //pas complet
-                    require("Views/validation.php");
+                    header ('Location: index.php?action=validation');
+                    exit (0); // ou exit (); ou exit ;
                   }else{
-                    $_SESSION['login']=$username;
                     header ('Location: index.php');
                     exit (0); // ou exit (); ou exit ;
                   }
@@ -61,7 +69,7 @@
           require("Views/connection.php");
         }else{
           if ($_GET['action']=='vote'){
-            require("Model/Model.php");
+
             require("Model/FilmManager.php");
             $fm = new FilmManager();
             $movieid=$_GET['movieid'];
@@ -72,7 +80,7 @@
             if ($_GET['action']=='validation'){
               if(isset($_POST['code'])){
                 $code=$_POST['code'];
-                require("Model/Model.php");
+
                 require("Model/MailManager.php");
                 $mm = new MailManager();
                 $results7= $mm->getCode($_SESSION['login']);
@@ -90,7 +98,17 @@
       }
     }
   }else{
-    require("Model/Model.php");
+    if (isset($_SESSION['login'])){
+
+        require("Model/MailManager.php");
+        $mm = new MailManager();
+        $code = $mm->getCode($_SESSION['login']);
+        if($code!=NULL){
+          header ('Location: index.php?action=validation');
+          exit (0); // ou exit (); ou exit ;
+        }
+    }
+
     require("Model/FilmManager.php");
     $fm = new FilmManager();
     if (isset($_GET["movieid"])){

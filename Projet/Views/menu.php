@@ -12,12 +12,6 @@
     echo "<a href='index.php?action=inscription'>S'inscrire</a>";
     echo '<a href="index.php?action=connection">Connexion</a></nav>';
   }
-/*  echo '<FORM id="search" action="index.php?action=search" method="post">
-      <INPUT placeholder="Search user" name="searchuser">';
-      if (isset($erreur)){
-        echo "<p id='erreur2'>".$erreur.'</p>';
-      }
-    echo'<INPUT type="Submit" id="submit" value="Register">
-    </FORM>';*/
+
   $menu = ob_get_clean();
  ?>

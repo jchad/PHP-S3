@@ -1,19 +1,24 @@
 <?php
   $titre = "Inscription";
   ob_start();
-  echo '
-    <FORM action="index.php?action=inscription" method="post">
-      <p><INPUT placeholder="Enter your name" name="name"></p>
-      <p><INPUT placeholder="Enter your surname" name="surname"></p>
-      <p><INPUT placeholder="Enter your username" name="username"></p>
-      <p><INPUT type="password" placeholder="Enter your password" name="password"></p>
-      <p><INPUT type="password" placeholder="Enter your password again" name="passwordbis"></p>
-      <p><INPUT type="email" placeholder="Enter your email adress" name="email"></p>
-      <p><INPUT type="Submit" value="Register"></p>
-    </FORM>';
-  if (isset($erreur)){
-    echo "<p id='erreur'>".$erreur.'</p>';
-  }
+  echo '<div id="form">
+    <FORM class="form" id="register" action="index.php?action=inscription" method="post">
+      <h1> Register </h1>
+      <fieldset id="inputs">
+      <INPUT placeholder="Name" name="name" autofocus required>
+      <INPUT placeholder="Surname" name="surname" required>
+      <INPUT placeholder="Username" name="username" required>
+      <INPUT type="password" placeholder="Password" name="password" required>
+      <INPUT type="password" placeholder="Enter your password again" name="passwordbis" required>
+      <INPUT type="email" placeholder="Mail" name="email" required>
+      </fieldset>';
+      if (isset($erreur)){
+        echo "<p id='erreur2'>".$erreur.'</p>';
+      }
+    echo'  <fieldset id="actions">
+      <INPUT type="Submit" id="submit" value="Register">
+      </fieldset>
+    </FORM></div>';
   $contenu = ob_get_clean();
   require("Views/menu.php");
   require("Views/layout.php");

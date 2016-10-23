@@ -1,10 +1,27 @@
-table,th, td{
-  border: 1px solid black;
+table{
   border-collapse: collapse;
+  margin-top: 30px;
+  text-align: center;
+  margin-left: 50px;
 }
-
-th, td{
+th,td{
+  border: 1px solid #888;
   padding: 3px;
+}
+ul{
+  list-style-type: circle;
+}
+a{
+  color: #666;
+  text-decoration: none;
+}
+a:hover{
+  color: #8f5a0a;
+  text-decoration: underline;
+}
+td{
+  background-color: #fff;
+  color: #666;
 }
 
 html{
@@ -12,7 +29,15 @@ html{
 }
 
 th{
-  color:red;
+  background-color: #ffb94b;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
+  background-image: -webkit-linear-gradient(top, #fddb6f, #ffb94b);
+  background-image: -moz-linear-gradient(top, #fddb6f, #ffb94b);
+  background-image: -ms-linear-gradient(top, #fddb6f, #ffb94b);
+  background-image: -o-linear-gradient(top, #fddb6f, #ffb94b);
+  background-image: linear-gradient(top, #fddb6f, #ffb94b);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+  color: #8f5a0a;
 }
 
 #erreur{
@@ -27,12 +52,16 @@ th{
   font-weight: bold;
   text-align: center;
 }
-
+section{
+  padding: 0 0 20px 0;
+}
+body{
+  margin: 0;
+  padding: 0;
+}
 
 em#profil{
-  position: absolute;
   right: 30px;
-  margin-top: 5px;
 }
 
 em#profil a{
@@ -45,44 +74,152 @@ em#profil a:hover{
   text-decoration: underline;
 }
 
+nav{
+  position: absolute;
+  top:0;
+  margin: 0;
+  padding:0;
+  width: 100%;
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
+  background-image: -webkit-linear-gradient(top, #fff, #eee);
+  background-image: -moz-linear-gradient(top, #fff, #eee);
+  background-image: -ms-linear-gradient(top, #fff, #eee);
+  background-image: -o-linear-gradient(top, #fff, #eee);
+  background-image: linear-gradient(top, #fff, #eee);
+  height: 45px;
+  -webkit-box-shadow:
+        0 0 2px rgba(0, 0, 0, 0.2),
+        0 1px 1px rgba(0, 0, 0, .2),
+        0 3px 0 #fff,
+        0 4px 0 rgba(0, 0, 0, .2),
+        0 6px 0 #fff,
+        0 7px 0 rgba(0, 0, 0, .2);
+  -moz-box-shadow:
+        0 0 2px rgba(0, 0, 0, 0.2),
+        1px 1px   0 rgba(0,   0,   0,   .1),
+        3px 3px   0 rgba(255, 255, 255, 1),
+        4px 4px   0 rgba(0,   0,   0,   .1),
+        6px 6px   0 rgba(255, 255, 255, 1),
+        7px 7px   0 rgba(0,   0,   0,   .1);
+  box-shadow:
+        0 0 2px rgba(0, 0, 0, 0.2),
+        0 1px 1px rgba(0, 0, 0, .2),
+        0 3px 0 #fff,
+        0 4px 0 rgba(0, 0, 0, .2),
+        0 6px 0 #fff,
+        0 7px 0 rgba(0, 0, 0, .2);
+}
+
+nav:first-child{
+  padding-left: 5px;
+}
+nav:nth-child(n){
+  padding-top: 5px;
+}
+nav:last-child{
+  padding-bottom: 4px;
+}
 nav a{
   display: inline-block;
-  color: black;
+  text-transform: uppercase;
+  text-align: center;
+  color: #666;
+  font: normal 12px/1 Verdana, Helvetica;
   text-decoration: none;
   padding: 8px 32px;
   border: 1px solid black;
   margin:5px;
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
+  background-image: -webkit-linear-gradient(top, #fff, #eee);
+  background-image: -moz-linear-gradient(top, #fff, #eee);
+  background-image: -ms-linear-gradient(top, #fff, #eee);
+  background-image: -o-linear-gradient(top, #fff, #eee);
+  background-image: linear-gradient(top, #fff, #eee);
+  position: relative;
+  z-index: 0;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
+
+nav a:before
+{
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border: 1px dashed #ccc;
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    -moz-box-shadow: 0 0 0 1px #fff;
+    -webkit-box-shadow: 0 0 0 1px #fff;
+    box-shadow: 0 0 0 1px #fff;
+}
+
 nav{
   display: inline;
 }
+
 nav a:hover{
-  text-decoration:underline;
+  background-color: #ffb94b;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
+  background-image: -webkit-linear-gradient(top, #fddb6f, #ffb94b);
+  background-image: -moz-linear-gradient(top, #fddb6f, #ffb94b);
+  background-image: -ms-linear-gradient(top, #fddb6f, #ffb94b);
+  background-image: -o-linear-gradient(top, #fddb6f, #ffb94b);
+  background-image: linear-gradient(top, #fddb6f, #ffb94b);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+   -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+   box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+  cursor: pointer;
+  color: #8f5a0a;
+  text-decoration: none;
 }
+
+
 
 h1{
+  padding: 50px 0 30px 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
+  text-transform: uppercase;
   text-align: center;
-  color:red;
-  padding-bottom: 10px;
-  font-size: 36px;
+  color: #666;
+  /*letter-spacing: 4px;*/
+  font: normal 36px/1 Verdana, Helvetica;
 }
-table{
-  text-align: center;
+h2{
+  padding: 10px 0 10px 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 1px 0 rgba(0, 0, 0, .5);
+  color: #666;
+  /*letter-spacing: 4px;*/
+  font: normal 18px/1 Verdana, Helvetica;
 }
 
-html{
-  background-image: url('sayagata-400px.png');
-}
-
-/*CSS de connexion*/
-
-
-
-
+/*CSS de connexion/inscription*/
 
 /*--------------------*/
+#login{
+  height: 280px;
+}
+#register{
+  height: 500px;
+}
+#search{
+  z-index: 1;
+}
 
-#login
+#form{
+  margin: 50px 0 30px -230px;
+    position: relative;;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+}
+.form
 {
     background-color: #fff;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
@@ -91,13 +228,9 @@ html{
     background-image: -ms-linear-gradient(top, #fff, #eee);
     background-image: -o-linear-gradient(top, #fff, #eee);
     background-image: linear-gradient(top, #fff, #eee);
-    height: 280px;
     width: 400px;
-    margin: -150px 0 0 -230px;
     padding: 30px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    position: relative;
     z-index: 0;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -125,7 +258,7 @@ html{
           0 7px 0 rgba(0, 0, 0, .2);
 }
 
-#login:before
+.form:before
 {
     content: '';
     position: absolute;
@@ -142,29 +275,36 @@ html{
 
 /*--------------------*/
 
-#login h1
+.form h1
 {
     text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
     text-transform: uppercase;
     text-align: center;
     color: #666;
     margin: 0 0 30px 0;
-    letter-spacing: 4px;
+    /*letter-spacing: 4px;*/
     font: normal 26px/1 Verdana, Helvetica;
     position: relative;
+    padding-bottom: 0;
 }
 
-#login h1:after, #login h1:before
+
+
+.form h1:after, .form h1:before
 {
     background-color: #777;
     content: "";
     height: 1px;
     position: absolute;
     top: 15px;
-    width: 120px;
 }
-
-#login h1:after
+#register h1:after, #register h1:before{
+  width: 110px;
+}
+#login h1:after, #login h1:before{
+  width: 130px;
+}
+.form h1:after
 {
     background-image: -webkit-gradient(linear, left top, right top, from(#777), to(#fff));
     background-image: -webkit-linear-gradient(left, #777, #fff);
@@ -175,7 +315,7 @@ html{
     right: 0;
 }
 
-#login h1:before
+.form h1:before
 {
     background-image: -webkit-gradient(linear, right top, left top, from(#777), to(#fff));
     background-image: -webkit-linear-gradient(right, #777, #fff);

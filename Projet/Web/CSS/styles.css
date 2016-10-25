@@ -53,7 +53,7 @@ th{
   text-align: center;
 }
 section{
-  padding: 0 0 20px 0;
+  padding: 60px 0 20px 5px;
 }
 body{
   margin: 0;
@@ -61,7 +61,9 @@ body{
 }
 
 em#profil{
-  right: 30px;
+  padding: 10px 5px 10px 0;
+  position: absolute;
+  right: 300px;
 }
 
 em#profil a{
@@ -120,7 +122,37 @@ nav:nth-child(n){
 nav:last-child{
   padding-bottom: 4px;
 }
-nav a{
+#search{
+  display: inline-block;
+  float: right;
+  padding: 5px 5px 0 0;
+  z-index: 0;
+}
+nav input
+{
+    background: #f1f1f1 no-repeat;
+    padding: 6px 6px 6px 6px;
+    width: 140px;
+    border: 1px solid #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+}
+
+
+nav input:focus
+{
+    background-color: #fff;
+    border-color: #e8c291;
+    outline: none;
+    -moz-box-shadow: 0 0 0 1px #e8c291 inset;
+    -webkit-box-shadow: 0 0 0 1px #e8c291 inset;
+    box-shadow: 0 0 0 1px #e8c291 inset;
+}
+nav > a{
   display: inline-block;
   text-transform: uppercase;
   text-align: center;
@@ -144,7 +176,7 @@ nav a{
   border-radius: 3px;
 }
 
-nav a:before
+nav > a:before
 {
     content: '';
     position: absolute;
@@ -163,7 +195,7 @@ nav{
   display: inline;
 }
 
-nav a:hover{
+nav > a:hover{
   background-color: #ffb94b;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
   background-image: -webkit-linear-gradient(top, #fddb6f, #ffb94b);
@@ -213,9 +245,9 @@ h2{
 }
 
 #form{
-  margin: 50px 0 30px -230px;
-    position: relative;;
-    top: 50%;
+  margin: 100px 0 30px -230px;
+    position: absolute;
+    right: 50%;
     left: 50%;
     z-index: 0;
 }
@@ -405,13 +437,23 @@ fieldset
     border-style: solid;
     border-color: #d69e31 #e3a037 #d5982d #e3a037;
 
-    float: left;
-    height: 35px;
-    padding: 0;
-    width: 120px;
+
     cursor: pointer;
     font: bold 15px Arial, Helvetica;
     color: #8f5a0a;
+}
+
+.form #submit{
+  float: left;
+  height: 35px;
+  padding: 0;
+  width: 120px;
+}
+
+#search #submit{
+  height: 30px;
+  padding: 0;
+  width: 80px;
 }
 
 #submit:hover,#submit:focus
@@ -445,15 +487,4 @@ fieldset
     float: right;
     line-height: 35px;
     margin-left: 10px;
-}
-
-/*--------------------*/
-
-#back
-{
-    display: block;
-    text-align: center;
-    position: relative;
-    top: 60px;
-    color: #999;
 }

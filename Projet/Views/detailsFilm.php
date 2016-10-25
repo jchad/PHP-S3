@@ -8,10 +8,10 @@
   <li> nombre de votes : ' .$results2['Votes']. '</li></ul>';
   if (isset($_SESSION['login'])){
     if($results5==0){
-      echo '<FORM action="index.php?movieid='.$movieid.'&amp;action=vote" method="post"><p><INPUT type="submit" value="Votez pour ce film" name="password"></p></FORM>';
+      echo '<FORM action="index.php?movieid='.$movieid.'&amp;action=vote" method="post"><p><INPUT type="submit" value="Votez pour ce film"></p></FORM>';
     }
     else{
-      echo '<p>Vous avez déjà votez pour ce film</p>';
+      echo '<FORM action="index.php?movieid='.$movieid.'&amp;action=unvote" method="post"><p><INPUT type="submit" value="Retirer mon vote"></p></FORM>';;
     }
   }
   echo '<h2>Casting du film :</h2>';

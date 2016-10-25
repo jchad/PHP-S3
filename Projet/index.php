@@ -1,6 +1,8 @@
 <?php
   session_start();
   require("Model/Model.php");
+  require("Model/UserManager.php");
+  $um= new UserManager();
   if (isset($_GET['action'])){
     if ($_GET['action']=='logout'){
       session_destroy ();
@@ -20,11 +22,8 @@
             $erreur='Les deux mots de passe ne sont pas identiques.';
           }
           else{
-
-            require("Model/ConnectionManager.php");
             require("Model/MailManager.php");
-            $cm = new ConnectionManager();
-            $cm->createUser($username, $password, $nom, $prenom, $mail);
+            $um->createUser($username, $password, $nom, $prenom, $mail);
             $mm = new MailManager();
             $typemail='register';
             require("Web/Mail.php");
@@ -42,12 +41,9 @@
           if(isset($_POST['username']) && isset($_POST['password'])){
               $username=$_POST['username'];
               $password=sha1($_POST['password']);
-
-              require("Model/ConnectionManager.php");
               require("Model/MailManager.php");
-              $cm = new ConnectionManager();
               $mm = new MailManager();
-              $results4= $cm->getConnection($username);
+              $results4= $um->getConnection($username);
               if ($results4==NULL){
                 $erreur='Utilisateur inexistant';
               }else{
@@ -69,18 +65,16 @@
           require("Views/connection.php");
         }else{
           if ($_GET['action']=='vote'){
-
             require("Model/FilmManager.php");
             $fm = new FilmManager();
             $movieid=$_GET['movieid'];
-            $fm->setVoteFilm($movieid,$_SESSION['login']);
+            $fm->addVoteFilm($movieid,$_SESSION['login']);
             header ('Location: index.php?movieid='.$movieid.'');
             exit (0); // ou exit (); ou exit ;
           }else{
             if ($_GET['action']=='validation'){
               if(isset($_POST['code'])){
                 $code=$_POST['code'];
-
                 require("Model/MailManager.php");
                 $mm = new MailManager();
                 $results7= $mm->getCode($_SESSION['login']);
@@ -91,7 +85,23 @@
                   exit (0); // ou exit (); ou exit ;
                 }
               }
-            require("Views/validation.php");
+              require("Views/validation.php");
+            }else{
+              if ($_GET['action']=='unvote'){
+                require("Model/FilmManager.php");
+                $fm = new FilmManager();
+                $movieid=$_GET['movieid'];
+                $fm->removeVoteFilm($movieid,$_SESSION['login']);
+                header ('Location: index.php?movieid='.$movieid.'');
+                exit (0); // ou exit (); ou exit ;
+              }else{
+                if ($_GET['action']=='search'){
+                  $Login=$_POST['searchuser'];
+                  $userid=$um->getUserID($Login);
+                  header ('Location: index.php?userid='.$userid.'');
+                  exit (0); // ou exit (); ou exit ;
+                }
+              }
             }
           }
         }
@@ -99,7 +109,6 @@
     }
   }else{
     if (isset($_SESSION['login'])){
-
         require("Model/MailManager.php");
         $mm = new MailManager();
         $code = $mm->getCode($_SESSION['login']);
@@ -108,35 +117,72 @@
           exit (0); // ou exit (); ou exit ;
         }
     }
-
-    require("Model/FilmManager.php");
-    $fm = new FilmManager();
-    if (isset($_GET["movieid"])){
-      $movieid=(int)$_GET["movieid"];
-      if ($movieid==""){
-        $erreur='Identifiant de film requis';
+    if (isset($_GET['userid'])){
+      $userid=$_GET['userid'];
+      $verif= $um->verifID($userid);
+      if($userid==""){
+        $erreur="Identifiant d'utilisateur requis";
         require("Views/error.php");
-      }
-      else{
-        $results2= $fm->getFilmDetails($movieid);
-        $results3= $fm->getCasting($movieid);
-        if(isset($_SESSION['login'])){
-          $results5= $fm->getVoteFilm($movieid,$_SESSION['login']);
-        }
-        if ($results2==NULL){
-          $erreur='Identifiant de film incorrect';
-          require("Views/error.php");
+      }else{
+        if ($verif == $userid){
+          if (isset($_SESSION['login'])){
+            $Login=$_SESSION['login'];
+            $userco = $um->getUserID($Login);
+            if ($userco == $userid){
+              $titre="Votre Profil";
+            }
+            else{
+              $Login = $um->getLogin($userid);
+              $titre="Profil de $Login";
+            }
+            $userinfo=$um->getInfoUser($userid);
+            $voteuser=$um->getVoteFilmUser($userid);
+            require("Views/profil.php");
+          }
+          else{
+            $Login = $um->getLogin($userid);
+            $titre="Profil de $Login";
+            $userinfo=$um->getInfoUser($userid);
+            $voteuser=$um->getVoteFilmUser($userid);
+            require("Views/profil.php");
+          }
         }
         else{
-          require("Views/detailsFilm.php");
+          $erreur="Pas d'utilisateur pour ce numéro";
+          require("Views/error.php");
         }
       }
     }
     else{
-      $results= $fm->getFilms();
-      $count=count($results);
-      require("Views/films.php");
+      require("Model/FilmManager.php");
+      $fm = new FilmManager();
+      if (isset($_GET["movieid"])){
+        $movieid=(int)$_GET["movieid"];
+        if ($movieid==""){
+          $erreur='Identifiant de film requis';
+          require("Views/error.php");
+        }
+        else{
+          $results2= $fm->getFilmDetails($movieid);
+          $results3= $fm->getCasting($movieid);
+          if(isset($_SESSION['login'])){
+            $results5= $fm->getVoteFilm($movieid,$_SESSION['login']);
+          }
+          if ($results2==NULL){
+            $erreur='Identifiant de film incorrect';
+            require("Views/error.php");
+          }
+          else{
+            require("Views/detailsFilm.php");
+          }
+        }
       }
+      else{
+        $results= $fm->getFilms();
+        $count=count($results);
+        require("Views/films.php");
+        }
+    }
   }
 
 

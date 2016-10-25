@@ -33,7 +33,7 @@
       return $results['totalvote'];
     }
 
-    public function setVoteFilm($movieid,$login){
+    public function addVoteFilm($movieid,$login){
       $sql = 'SELECT UserID FROM utilisateur WHERE Login = :p_login';
       $req = $this->executerRequete($sql, array('p_login' => $login));
       $results=$req->fetch(PDO::FETCH_ASSOC);
@@ -41,9 +41,20 @@
       $sql2 = 'Insert into Vote(MovieID,UserID) values(:p_movieid,:p_userid)';
       $results2= $this->executerRequete($sql2, array('p_movieid' => $movieid,'p_userid' => $results['UserID']));
       $results2->closeCursor();
-      $sql3 = 'Update movie SET Votes = Votes+1 where MovieID = :p_movieid';
+      /*$sql3 = 'Update movie SET Votes = Votes+1 where MovieID = :p_movieid';
       $results3 = $this->executerRequete($sql3, array('p_movieid' => $movieid));
-      $results3->closeCursor();
+      $results3->closeCursor();   Non nécessaire depuis l'ajout du trigger sur la BDD*/
     }
+
+    public function removeVoteFilm($movieid,$login){
+      $sql = 'SELECT UserID FROM utilisateur WHERE Login = :p_login';
+      $req = $this->executerRequete($sql, array('p_login' => $login));
+      $results=$req->fetch(PDO::FETCH_ASSOC);
+      $req->closeCursor();
+      $sql2 = 'Delete from Vote where MovieID = :p_movieid and UserID = :p_userid';
+      $results2= $this->executerRequete($sql2, array('p_movieid' => $movieid,'p_userid' => $results['UserID']));
+      $results2->closeCursor();
+    }
+
   }
 ?>

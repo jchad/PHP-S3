@@ -18,21 +18,26 @@
           $nom=$_POST['name'];
           $prenom=$_POST['surname'];
           $mail=$_POST['email'];
+          $log=$um->verifLogin($username);
           if($password!=$passwordbis){
             $erreur='Les deux mots de passe ne sont pas identiques.';
           }
           else{
-            require("Model/MailManager.php");
-            $um->createUser($username, $password, $nom, $prenom, $mail);
-            $mm = new MailManager();
-            $typemail='register';
-            require("Web/Mail.php");
-            mail($mail,$sujet,$message_txt);
-            $mm->sendMail($mail, $message_txt, $message_html, $sujet);
-            $_SESSION['login']=$username;
-            header ('Location: index.php?action=validation');
-            exit (0); // ou exit (); ou exit ;
-            //rediriger vers la page pour valider le compte
+            if($log!=0){
+              $erreur="Login indisponible";
+            }else{
+              require("Model/MailManager.php");
+              $um->createUser($username, $password, $nom, $prenom, $mail);
+              $mm = new MailManager();
+              $typemail='register';
+              require("Web/Mail.php");
+              mail($mail,$sujet,$message_txt);
+              $mm->sendMail($mail, $message_txt, $message_html, $sujet);
+              $_SESSION['login']=$username;
+              header ('Location: index.php?action=validation');
+              exit (0); // ou exit (); ou exit ;
+              //rediriger vers la page pour valider le compte
+            }
           }
       }
         require("Views/inscription.php");

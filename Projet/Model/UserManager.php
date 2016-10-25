@@ -33,6 +33,14 @@
       return $results['UserID'];
     }
 
+    public function verifLogin($Login){
+      $sql = 'Select count(*) from utilisateur where Login = :p_login';
+      $req = $this->executerRequete($sql, array('p_login' => $Login));
+      $results= $req->fetch(PDO::FETCH_ASSOC);
+      $req->closeCursor();
+      return $results;
+    }
+
     public function getLogin($userid){
       $sql = 'Select Login from utilisateur where UserID = :p_userid';
       $req = $this->executerRequete($sql, array('p_userid' => $userid));

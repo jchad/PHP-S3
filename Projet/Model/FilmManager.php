@@ -39,8 +39,8 @@
       $results=$req->fetch(PDO::FETCH_ASSOC);
       $req->closeCursor();
       $sql2 = 'Insert into Vote(MovieID,UserID) values(:p_movieid,:p_userid)';
-      $results2= $this->executerRequete($sql2, array('p_movieid' => $movieid,'p_userid' => $results['UserID']));
-      $results2->closeCursor();
+      $req= $this->executerRequete($sql2, array('p_movieid' => $movieid,'p_userid' => $results['UserID']));
+      $req->closeCursor();
       /*$sql3 = 'Update movie SET Votes = Votes+1 where MovieID = :p_movieid';
       $results3 = $this->executerRequete($sql3, array('p_movieid' => $movieid));
       $results3->closeCursor();   Non nécessaire depuis l'ajout du trigger sur la BDD*/
@@ -56,5 +56,18 @@
       $results2->closeCursor();
     }
 
+
+    public function getComm($movieid){
+      $sql ='SELECT Auteur, commentaire, DATE_FORMAT(dateComm, \'%d/%m/%Y à %Hh%imin%ss\') AS dateCommFr FROM commentaires WHERE MovieID = :p_movieid ORDER BY dateComm';
+      $req = $this->executerRequete($sql,array('p_movieid' => $movieid));
+      $results=$req->fetchAll(PDO::FETCH_ASSOC);
+      $req->closeCursor();
+      return $results;
+    }
+    public function addComm($movieid,$login,$comm){
+      $sql = 'Insert into commentaires(MovieID,Auteur,commentaire,dateComm) values(:p_movieid,:p_login,:p_comm, sysdate())';
+      $req= $this->executerRequete($sql, array('p_movieid' => $movieid,'p_login' => $login,'p_comm' => $comm));
+      $req->closeCursor();
+    }
   }
 ?>

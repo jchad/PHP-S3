@@ -105,6 +105,17 @@
                   $userid=$um->getUserID($Login);
                   header ('Location: index.php?userid='.$userid.'');
                   exit (0); // ou exit (); ou exit ;
+                }else{
+                  if ($_GET['action']=='comm'){
+                    require("Model/FilmManager.php");
+                    $fm= new FilmManager();
+                    $movieid=$_GET['movieid'];
+                    $Login=$_SESSION['login'];
+                    $comm=$_POST['commentaire'];
+                    $fm->addComm($movieid,$Login,$comm);
+                    header ('Location: index.php?movieid='.$movieid.'');
+                    exit (0); // ou exit (); ou exit ;
+                  }
                 }
               }
             }
@@ -170,6 +181,7 @@
         else{
           $results2= $fm->getFilmDetails($movieid);
           $results3= $fm->getCasting($movieid);
+          $comm= $fm->getComm($movieid);
           if(isset($_SESSION['login'])){
             $results5= $fm->getVoteFilm($movieid,$_SESSION['login']);
           }

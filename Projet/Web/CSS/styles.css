@@ -42,6 +42,43 @@ th{
   color: #8f5a0a;
 }
 
+
+#tablefilm th a, #order a{
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+#tablefilm th a:hover, #order a:hover{
+  text-decoration: none;
+}
+
+#tablefilm th:hover, #tablefilm th:focus
+{
+    background-color: #fddb6f;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ffb94b), to(#fddb6f));
+    background-image: -webkit-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: -moz-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: -ms-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: -o-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: linear-gradient(top, #ffb94b, #fddb6f);
+}
+
+#tablefilm th:active, #order
+{
+    outline: none;
+     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+}
+
+th a::-moz-focus-inner
+{
+  border: none;
+}
+
+
+
 /* Section commentaire */
 
 #comm
@@ -187,6 +224,7 @@ em#profil a:hover{
   font-weight: bolder;
   text-decoration: underline;
 }
+
 
 nav{
   position: absolute;

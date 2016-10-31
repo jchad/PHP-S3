@@ -17,7 +17,7 @@
   echo '<h2>Casting du film :</h2>';
   echo '<table><tr><th></th><th>Nom</th>';
   foreach($results3 as $ligne)
-    echo '<tr><td>'.$ligne['Ordinal'].'</td><td>'.$ligne['Nom'].'</td>';
+    echo '<tr><td>'.$ligne['Ordinal'].'</td><td><a href=index.php?actorid='.$ligne['ActorID'].'>'.$ligne['Nom'].'</a></td>';
   echo '</table>';
   echo '<div id="comm"><h2>Commentaires</h2>';
   if (isset($_SESSION['login'])){

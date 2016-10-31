@@ -137,7 +137,7 @@
       $userid=$_GET['userid'];
       $verif= $um->verifID($userid);
       if($userid==""){
-        $erreur="Identifiant d'utilisateur requis";
+        $erreur="Utilisateur inexistant";
         require("Views/error.php");
       }else{
         if ($verif == $userid){
@@ -195,10 +195,26 @@
         }
       }
       else{
-        $results= $fm->getFilms();
-        $count=count($results);
-        require("Views/films.php");
+        if(isset($_GET["order"])){
+          $order=$_GET["order"];
+          $results= $fm->getFilmsOrder($order);
+          $count=count($results);
+          require("Views/films.php");
         }
+        else{
+          if(isset($_GET["actorid"])){
+            $actorid=$_GET["actorid"];
+            $listefilmsacteur= $fm->getFilmsActeur($actorid);
+            $count=count($listefilmsacteur);
+            $nomacteur=$fm->getNomActeur($actorid);
+            require("Views/acteurs.php");
+          }else{
+            $results= $fm->getFilms();
+            $count=count($results);
+            require("Views/films.php");
+          }
+        }
+      }
     }
   }
 

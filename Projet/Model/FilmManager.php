@@ -9,12 +9,49 @@
       return $results;
     }
 
+    public function getFilmsOrder($order){
+      switch($order){
+        case 'titre':
+            $sql = 'SELECT * FROM Movie order by Titre';
+            break;
+        case 'annee':
+            $sql = 'SELECT * FROM Movie order by Année DESC';
+            break;
+        case 'score':
+            $sql = 'SELECT * FROM Movie order by Score DESC';
+            break;
+        case 'votes':
+            $sql = 'SELECT * FROM Movie order by Votes DESC';
+            break;
+      }
+      $req = $this->executerRequete($sql);
+      $results=$req->fetchAll(PDO::FETCH_ASSOC);
+      $req->closeCursor();
+      return $results;
+    }
+
     public function getCasting($movieid){
-      $sql = 'SELECT c.Ordinal, a.Nom FROM Casting c join Actor a on c.ActorID=a.ActorID where MovieID = :p_movieid ORDER BY Ordinal';
+      $sql = 'SELECT c.Ordinal, a.Nom, a.ActorID FROM Casting c join Actor a on c.ActorID=a.ActorID where MovieID = :p_movieid ORDER BY Ordinal';
       $req = $this->executerRequete($sql, array('p_movieid'=> $movieid));
       $results=$req->fetchAll(PDO::FETCH_ASSOC);
       $req->closeCursor();
       return $results;
+    }
+
+    public function getFilmsActeur($actorid){
+      $sql = 'SELECT c.Ordinal, m.Titre, m.Année, m.MovieID FROM Casting c join Movie m on c.MovieID=m.MovieID where ActorID = :p_actorid ORDER BY Titre';
+      $req = $this->executerRequete($sql, array('p_actorid'=> $actorid));
+      $results=$req->fetchAll(PDO::FETCH_ASSOC);
+      $req->closeCursor();
+      return $results;
+    }
+
+    public function getNomActeur($actorid){
+      $sql = 'Select Nom from Actor where ActorID = :p_actorid';
+      $req = $this->executerRequete($sql, array('p_actorid' => $actorid));
+      $results= $req->fetch();
+      $req->closeCursor();
+      return $results['Nom'];
     }
 
     public function getFilmDetails($movieid){

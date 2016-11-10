@@ -46,6 +46,14 @@
       return $results;
     }
 
+    public function getFilmsAnnee($annee){
+      $sql = 'SELECT MovieID, Titre, Scores, Votes FROM Movie where Année = :p_annee';
+      $req = $this->executerRequete($sql, array('p_annee' => $annee));
+      $results=$req->fetchAll(PDO::FETCH_ASSOC);
+      $req->closeCursor();
+      return $results;
+    }
+
     public function getNomActeur($actorid){
       $sql = 'Select Nom from Actor where ActorID = :p_actorid';
       $req = $this->executerRequete($sql, array('p_actorid' => $actorid));

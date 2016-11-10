@@ -1,0 +1,4 @@
+AuthName " Connexion administrateur requise "
+AuthType Basic
+AuthUserFile "/home/PHP/PHP-S3/Projet/admin/.htpasswd"
+Require valid - user

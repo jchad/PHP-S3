@@ -1,5 +1,6 @@
 <?php
   session_start();
+  $css='Web/CSS/styles.css';
   require("Model/Model.php");
   require("Model/UserManager.php");
   $um= new UserManager();
@@ -209,9 +210,14 @@
             $nomacteur=$fm->getNomActeur($actorid);
             require("Views/acteurs.php");
           }else{
-            $results= $fm->getFilms();
-            $count=count($results);
-            require("Views/films.php");
+            if(isset($_GET['annee'])){
+              $filmsannee=$fm->getFilmsAnnee($_GET['annee']);
+              
+            }else{
+              $results= $fm->getFilms();
+              $count=count($results);
+              require("Views/films.php");
+            }
           }
         }
       }

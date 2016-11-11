@@ -15,14 +15,26 @@
  }else{
    if(isset($_GET['action'])){
      if($_GET['action']=='addfilm'){
+       $titreverif=$fma->verifFilm($_POST["titre"]);
+       if($titreverif!=0){
+         $erreur='Film déjà présent dans la base de donnée';
+         require("Views/error.php");
+       }else{
          $movieid=$fma->createFilm($_POST["titre"],$_POST["annee"],$_POST["note"],$_POST["vote"]);
          require("Views/nbacteur.php");
+       }
      }else{
        if($_GET['action']=='addacteur'){
          $nomac=$_POST["nom"];
-         $actorid=$fma->getActorID($nomac);
-         header ('Location: admin.php');
-         exit (0); // ou exit (); ou exit ;
+         $actorverif=$fma->verifActeur($nomac);
+         if($actorverif!=0){
+           $erreur='Acteur déjà présent dans la base de donnée';
+           require("Views/error.php");
+         }else{
+           $actorid=$fma->createActor($nomac);
+           header ('Location: admin.php');
+           exit (0); // ou exit (); ou exit ;
+         }
        }else{
          if($_GET['action']=='validationcasting'){
           $nb=$_GET['nb'];
@@ -37,9 +49,9 @@
         /*      $actorid=$fma->getActorID($_POST["nom$i"]);*/
               $fma->createCasting($movieid,$actorid,$_POST["ordinal$i"]);
             }
-            header ('Location: admin.php');
-            exit (0); // ou exit (); ou exit ;
           }
+          header ('Location: admin.php');
+          exit (0); // ou exit (); ou exit ;
          }
        }
      }

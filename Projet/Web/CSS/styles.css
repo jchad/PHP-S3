@@ -434,7 +434,7 @@ a#admin:before
 }
 
 #addfilm{
-
+  height: 400px;
 }
 
 
@@ -685,4 +685,8 @@ fieldset
     float: right;
     line-height: 35px;
     margin-left: 10px;
+}
+
+#inputs{
+  margin-bottom: 30px;
 }

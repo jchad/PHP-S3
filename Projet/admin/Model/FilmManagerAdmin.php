@@ -19,6 +19,14 @@
       return $result['verif'];
     }
 
+    public function verifFilm($titre){
+      $sql = 'Select count(*) as verif from Movie where Titre like :p_titre';
+      $req= $this->executerRequete($sql, array(':p_titre' =>$titre));
+      $result = $req->fetch(PDO::FETCH_ASSOC);
+      $req->closeCursor();
+      return $result['verif'];
+    }
+
     public function createActor($nom){
       $sql='Select max(ActorID) as idmax from Actor';
       $req= $this->executerRequete($sql);

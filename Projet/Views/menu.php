@@ -13,7 +13,7 @@
   }
   echo '<FORM id="search" action="index.php?action=search" method="post">
       <INPUT placeholder="Search user" name="searchuser">
-      <INPUT type="Submit" id="submit" value="Search">
+      <INPUT type="Submit" class="submit" value="Search">
     </FORM></nav>';
   $menu = ob_get_clean();
  ?>

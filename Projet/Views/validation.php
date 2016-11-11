@@ -3,7 +3,7 @@
   ob_start();
   echo ' <FORM action="index.php?action=validation" method="post">
      <p><INPUT placeholder="Enter the code given" name="code"></p>
-     <p><INPUT type="Submit" value="Valider"></p>
+     <p><INPUT class="submit" type="Submit" value="Valider"></p>
    </FORM>';
   if (isset($erreur)){
     echo "<p id='erreur'>Une erreur est survenue : ".$erreur.'</p>';

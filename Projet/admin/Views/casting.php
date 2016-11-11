@@ -10,7 +10,7 @@
     }
   echo'  </div>
     <div id="actions">
-    <INPUT type="Submit" id="submit" value="Ok">
+    <INPUT type="Submit" class="submit" value="Ok">
     </div>
   </FORM></div>';
   $contenu = ob_get_clean();

@@ -16,7 +16,7 @@
         echo "<p id='erreur2'>".$erreur.'</p>';
       }
     echo'  <div id="actions">
-      <INPUT type="Submit" id="submit" value="Register">
+      <INPUT type="Submit" class="submit" value="Register">
       </div>
     </FORM></div>';
   $contenu = ob_get_clean();

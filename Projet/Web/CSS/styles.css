@@ -175,14 +175,14 @@ th a::-moz-focus-inner
 #comm form{
   margin-bottom: 60px;
 }
-#commbd{
+.commbd{
   padding: 10px 20px 10px 20px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
 
-#auteur{
+.auteur{
   float: right;
   font-style: italic;
   color: #aaa;
@@ -376,7 +376,7 @@ h2{
   font: normal 18px/1 Verdana, Helvetica;
 }
 /*CSS admininistatrion*/
-a#admin{
+a.admin{
   display: inline-block;
   background-color: #fff;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
@@ -394,7 +394,7 @@ a#admin{
   border-radius: 3px;
   text-align: center;
 }
-a#admin:before
+a.admin:before
 {
     content: '';
     position: absolute;
@@ -409,7 +409,7 @@ a#admin:before
     box-shadow: 0 0 0 1px #fff;
 }
 
-#admin:hover,#admin:focus
+.admin:hover,.admin:focus
 {
     background-color: #fddb6f;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#ffb94b), to(#fddb6f));
@@ -552,8 +552,8 @@ a#admin:before
     background-image: -ms-linear-gradient(right, #777, #fff);
     background-image: -o-linear-gradient(right, #777, #fff);
     background-image: linear-gradient(right, #777, #fff);
-    left: 0;*/
-}
+    left: 0;
+}*/
 
 /*--------------------*/
 
@@ -611,7 +611,7 @@ fieldset
 
 }
 
-#submit
+.submit
 {
     background-color: #ffb94b;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));

@@ -11,7 +11,7 @@
     echo "<p id='erreur2'>Une erreur est survenue : ".$erreur.'</p>';
   }
   echo '<div id="actions">
-      <input type="Submit" id="submit" value="Log In">
+      <input type="Submit" class="submit" value="Log In">
       <a href="">Forgot your password?</a><a href="">Register</a>
   </div>
    </FORM></div>';

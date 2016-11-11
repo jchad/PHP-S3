@@ -8,7 +8,7 @@
       <INPUT placeholder="Nom" name="nom" autofocus required>
       </div>';
     echo'  <div id="actions">
-      <INPUT type="Submit" id="submit" value="Ajouter">
+      <INPUT type="Submit" class="submit" value="Ajouter">
       </div>
     </FORM></div>';
   $contenu = ob_get_clean();

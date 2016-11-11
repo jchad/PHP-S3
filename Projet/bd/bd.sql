@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 12 Octobre 2016 à 13:41
+-- Généré le :  Ven 11 Novembre 2016 à 22:34
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.19
 
@@ -26,8 +26,9 @@ SET time_zone = "+00:00";
 -- Structure de la table `actor`
 --
 
+DROP TABLE IF EXISTS `actor`;
 CREATE TABLE `actor` (
-  `ActorId` int(11) NOT NULL,
+  `ActorID` int(11) NOT NULL,
   `Nom` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -35,7 +36,7 @@ CREATE TABLE `actor` (
 -- Contenu de la table `actor`
 --
 
-INSERT INTO `actor` (`ActorId`, `Nom`) VALUES
+INSERT INTO `actor` (`ActorID`, `Nom`) VALUES
 (12, 'Abdul Salaam El Razzac'),
 (13, 'Abe Vigoda'),
 (19, 'Adam Baldwin'),
@@ -850,6 +851,7 @@ INSERT INTO `actor` (`ActorId`, `Nom`) VALUES
 -- Structure de la table `casting`
 --
 
+DROP TABLE IF EXISTS `casting`;
 CREATE TABLE `casting` (
   `MovieID` int(11) NOT NULL,
   `ActorID` int(11) NOT NULL,
@@ -1775,9 +1777,37 @@ INSERT INTO `casting` (`MovieID`, `ActorID`, `Ordinal`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `commentaires`
+--
+
+DROP TABLE IF EXISTS `commentaires`;
+CREATE TABLE `commentaires` (
+  `idComm` int(11) NOT NULL,
+  `MovieID` int(11) NOT NULL,
+  `Auteur` varchar(32) NOT NULL,
+  `commentaire` text NOT NULL,
+  `dateComm` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `commentaires`
+--
+
+INSERT INTO `commentaires` (`idComm`, `MovieID`, `Auteur`, `commentaire`, `dateComm`) VALUES
+(1, 1, 'Kinder', 'Ceci est un test', '2016-10-28 00:00:00'),
+(2, 1, 'Kinder', 'Test 2', '2016-10-28 17:59:40'),
+(3, 1, 'Kinder', 'gdfghdh', '2016-10-28 18:39:27'),
+(4, 1, 'Kinder', 'dsfgdgdf', '2016-10-28 21:49:32'),
+(5, 1, 'Kinder', 'sdfgd', '2016-10-28 21:50:46'),
+(6, 1, 'Kinder', 'Ceci\r\nest\r\nun\r\ntest\r\nsur\r\nplusieurs\r\nlignes', '2016-10-28 21:53:32');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `movie`
 --
 
+DROP TABLE IF EXISTS `movie`;
 CREATE TABLE `movie` (
   `MovieID` int(11) NOT NULL,
   `Titre` varchar(70) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
@@ -1797,8 +1827,8 @@ INSERT INTO `movie` (`MovieID`, `Titre`, `Année`, `Score`, `Votes`) VALUES
 (4, 'Titanic', 1997, 9.2, 8130),
 (5, 'Braveheart', 1995, 8.4, 8075),
 (6, 'Empire Strikes Back, The', 1980, 8.5, 8051),
-(7, 'Shawshank Redemption, The', 1994, 8.8, 7850),
-(8, 'Independence Day', 1996, 7, 7138),
+(7, 'Shawshank Redemption, The', 1994, 8.8, 7851),
+(8, 'Independence Day', 1996, 7, 7139),
 (9, 'Usual Suspects, The', 1995, 8.7, 6981),
 (10, 'Raiders of the Lost Ark', 1981, 8.4, 6488),
 (11, '2001: A Space Odyssey', 1968, 8.4, 6413),
@@ -1806,7 +1836,7 @@ INSERT INTO `movie` (`MovieID`, `Titre`, `Année`, `Score`, `Votes`) VALUES
 (13, 'Aliens', 1986, 8.3, 5811),
 (14, 'Silence of the Lambs, The', 1991, 8.3, 5715),
 (15, 'Princess Bride, The', 1987, 8.4, 5522),
-(16, 'Terminator 2: Judgment Day', 1991, 8, 5513),
+(16, 'Terminator 2: Judgment Day', 1991, 8, 5514),
 (17, 'Casablanca', 1942, 8.7, 5489),
 (18, 'Monty Python and the Holy Grail', 1974, 8.4, 5319),
 (19, 'Star Trek: First Contact', 1996, 8.2, 5298),
@@ -1820,10 +1850,10 @@ INSERT INTO `movie` (`MovieID`, `Titre`, `Année`, `Score`, `Votes`) VALUES
 (27, 'Reservoir Dogs', 1992, 8.3, 4861),
 (28, 'Apocalypse Now', 1979, 8.3, 4860),
 (29, 'Alien', 1979, 8.2, 4828),
-(30, 'Apollo 13', 1995, 7.8, 4778),
+(30, 'Apollo 13', 1995, 7.8, 4779),
 (31, 'Clockwork Orange, A', 1971, 8.4, 4767),
 (32, 'Jurassic Park', 1993, 7.4, 4707),
-(33, 'English Patient, The', 1996, 8.1, 4689),
+(33, 'English Patient, The', 1996, 8.1, 4690),
 (34, 'One Flew Over the Cuckoo\'s Nest', 1975, 8.5, 4545),
 (35, 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb', 1963, 8.6, 4451),
 (39, 'Terminator, The', 1984, 7.8, 4225),
@@ -1834,7 +1864,7 @@ INSERT INTO `movie` (`MovieID`, `Titre`, `Année`, `Score`, `Votes`) VALUES
 (321, 'Twins', 1988, 6.3, 1126),
 (334, 'Last Action Hero', 1993, 5.9, 1107),
 (410, 'Dave', 1993, 7.4, 962),
-(440, 'Kindergarten Cop', 1990, 6.2, 894),
+(440, 'Kindergarten Cop', 1990, 6.2, 895),
 (471, 'Running Man, The', 1987, 6.3, 856),
 (629, 'Commando', 1985, 6.1, 673),
 (746, 'Conan the Destroyer', 1984, 5.4, 542),
@@ -1842,7 +1872,7 @@ INSERT INTO `movie` (`MovieID`, `Titre`, `Année`, `Score`, `Votes`) VALUES
 (910, 'Brady Bunch Movie, The', 1995, 6.3, 412),
 (932, 'Red Heat', 1988, 5.8, 402),
 (960, 'Terminator 2: 3-D', 1996, 8.7, 384),
-(975, 'Night Shift', 1982, 6.6, 377),
+(975, 'Night Shift', 1982, 6.6, 378),
 (1106, 'Junior', 1994, 5.9, 329),
 (1339, 'Jingle All the Way', 1996, 6, 262),
 (1353, 'Outrageous Fortune', 1987, 6.1, 258),
@@ -1856,20 +1886,28 @@ INSERT INTO `movie` (`MovieID`, `Titre`, `Année`, `Score`, `Votes`) VALUES
 -- Structure de la table `utilisateur`
 --
 
+DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE `utilisateur` (
   `UserID` int(11) NOT NULL,
-  `Login` varchar(20) NOT NULL,
+  `Login` varchar(32) NOT NULL,
   `Pass` varchar(255) NOT NULL,
   `Nom` varchar(35) DEFAULT NULL,
-  `Mail` varchar(35) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Prenom` varchar(35) DEFAULT NULL,
+  `Mail` varchar(35) DEFAULT NULL,
+  `DateInscription` date DEFAULT NULL,
+  `nbVotes` int(11) DEFAULT '0',
+  `Code` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`UserID`, `Login`, `Pass`, `Nom`, `Mail`) VALUES
-(1, 'iut', 'iut2016', NULL, NULL);
+INSERT INTO `utilisateur` (`UserID`, `Login`, `Pass`, `Nom`, `Prenom`, `Mail`, `DateInscription`, `nbVotes`, `Code`) VALUES
+(1, 'iut', 'b1fc12427820cf917a6c419a8c94b0874fbe6dd5', NULL, NULL, NULL, NULL, 13, NULL),
+(2, 'Kinder', 'f30ecbf5b1cb85c631fdec0b39678550973cfcbc', 'Kinder', 'Bueno', 'exemple@gmail.com', NULL, 0, NULL),
+(3, 'MitsuakiMugetsu', 'f114d013bf74ab31eaacb70e71635d0488e0953b', 'Mugetsu', 'Mitsuaki', 'mugetsumitsuaki@gmail.com', NULL, 0, 'aaf6d8a4b7ab50a913f4430cf861d3a9d2d429f3'),
+(4, 'test', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'Bonjour', 'Aurevoir', 'oodamarasengan07@gmail.com', NULL, 0, 'f2bef084253a87cd5ac59534d7e47e4a3d7dba48');
 
 -- --------------------------------------------------------
 
@@ -1877,10 +1915,11 @@ INSERT INTO `utilisateur` (`UserID`, `Login`, `Pass`, `Nom`, `Mail`) VALUES
 -- Structure de la table `vote`
 --
 
+DROP TABLE IF EXISTS `vote`;
 CREATE TABLE `vote` (
   `MovieID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `vote`
@@ -1892,7 +1931,34 @@ INSERT INTO `vote` (`MovieID`, `UserID`) VALUES
 (3, 1),
 (4, 1),
 (5, 1),
-(6, 1);
+(6, 1),
+(7, 1),
+(8, 1),
+(16, 1),
+(30, 1),
+(33, 1),
+(440, 1),
+(975, 1);
+
+--
+-- Déclencheurs `vote`
+--
+DROP TRIGGER IF EXISTS `t_update_nb_vote_add`;
+DELIMITER $$
+CREATE TRIGGER `t_update_nb_vote_add` AFTER INSERT ON `vote` FOR EACH ROW BEGIN
+Update utilisateur SET nbVotes=nbVotes+1 where utilisateur.UserID = new.userid;
+Update movie SET Votes = Votes+1 where movie.MovieID = new.MovieID;
+END
+$$
+DELIMITER ;
+DROP TRIGGER IF EXISTS `t_update_nb_vote_del`;
+DELIMITER $$
+CREATE TRIGGER `t_update_nb_vote_del` AFTER DELETE ON `vote` FOR EACH ROW BEGIN
+Update utilisateur SET nbVotes=nbVotes-1 where utilisateur.UserID = old.UserID;
+Update movie SET Votes=Votes-1 where movie.MovieID = old.MovieID;
+END
+$$
+DELIMITER ;
 
 --
 -- Index pour les tables exportées
@@ -1902,7 +1968,7 @@ INSERT INTO `vote` (`MovieID`, `UserID`) VALUES
 -- Index pour la table `actor`
 --
 ALTER TABLE `actor`
-  ADD PRIMARY KEY (`ActorId`);
+  ADD PRIMARY KEY (`ActorID`);
 
 --
 -- Index pour la table `casting`
@@ -1912,10 +1978,26 @@ ALTER TABLE `casting`
   ADD KEY `ActorID` (`ActorID`);
 
 --
+-- Index pour la table `commentaires`
+--
+ALTER TABLE `commentaires`
+  ADD PRIMARY KEY (`idComm`),
+  ADD KEY `MovieID` (`MovieID`),
+  ADD KEY `Auteur` (`Auteur`);
+
+--
 -- Index pour la table `movie`
 --
 ALTER TABLE `movie`
-  ADD PRIMARY KEY (`MovieID`);
+  ADD PRIMARY KEY (`MovieID`),
+  ADD UNIQUE KEY `Titre` (`Titre`);
+
+--
+-- Index pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD PRIMARY KEY (`UserID`),
+  ADD UNIQUE KEY `Login` (`Login`);
 
 --
 -- Index pour la table `vote`
@@ -1925,6 +2007,20 @@ ALTER TABLE `vote`
   ADD KEY `fk_movie` (`MovieID`);
 
 --
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `commentaires`
+--
+ALTER TABLE `commentaires`
+  MODIFY `idComm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- Contraintes pour les tables exportées
 --
 
@@ -1933,7 +2029,7 @@ ALTER TABLE `vote`
 --
 ALTER TABLE `casting`
   ADD CONSTRAINT `Casting_ibfk_1` FOREIGN KEY (`MovieID`) REFERENCES `movie` (`MovieID`),
-  ADD CONSTRAINT `Casting_ibfk_2` FOREIGN KEY (`ActorID`) REFERENCES `actor` (`ActorId`);
+  ADD CONSTRAINT `Casting_ibfk_2` FOREIGN KEY (`ActorID`) REFERENCES `actor` (`ActorID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

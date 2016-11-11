@@ -2,16 +2,16 @@
   $titre = "Ajout d'acteur";
   ob_start();
   echo '
-    <FORM action="admin.php?action=addfilm" method="post">
+    <div id="form"><FORM class="form" id="addacteur" action="admin.php?action=addfilm" method="post">
       <h1> Ajout d\'acteur</h1>
-      <fieldset id="inputs">
+      <div id="inputs">
       <INPUT placeholder="Nom" name="nom" autofocus required>
-      </fieldset>';
-    echo'  <fieldset id="actions">
+      </div>';
+    echo'  <div id="actions">
       <INPUT type="Submit" id="submit" value="Ajouter">
-      </fieldset>
-    </FORM>';
+      </div>
+    </FORM></div>';
   $contenu = ob_get_clean();
-  require("../Views/menu.php");
+  require("Views/menu.php");
   require("../Views/layout.php");
  ?>

@@ -38,7 +38,7 @@
     <th><a href="index.php?order=votes">Votes</a></th></tr>';
   }
   foreach($results as $ligne)
-    echo '<tr><td><a href="index.php?movieid='.$ligne['MovieID'].'">'.$ligne['Titre'].'</a></td><td>'.$ligne['Année'].'</td><td>'.$ligne['Score'].'</td><td>'.$ligne['Votes'].'</td></tr>';
+    echo '<tr><td><a href="index.php?movieid='.$ligne['MovieID'].'">'.$ligne['Titre'].'</a></td><td><a href="index.php?annee='.$ligne['Année'].'">'.$ligne['Année'].'</a></td><td>'.$ligne['Score'].'</td><td>'.$ligne['Votes'].'</td></tr>';
   echo '</table>';
   $contenu=ob_get_clean();
   require("Views/menu.php");

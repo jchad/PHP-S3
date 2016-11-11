@@ -47,7 +47,7 @@
     }
 
     public function getFilmsAnnee($annee){
-      $sql = 'SELECT MovieID, Titre, Scores, Votes FROM Movie where Année = :p_annee';
+      $sql = 'SELECT MovieID, Titre, Score, Votes FROM Movie where Année = :p_annee';
       $req = $this->executerRequete($sql, array('p_annee' => $annee));
       $results=$req->fetchAll(PDO::FETCH_ASSOC);
       $req->closeCursor();

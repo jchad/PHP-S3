@@ -212,7 +212,7 @@
           }else{
             if(isset($_GET['annee'])){
               $filmsannee=$fm->getFilmsAnnee($_GET['annee']);
-              
+              require("Views/filmannee.php");
             }else{
               $results= $fm->getFilms();
               $count=count($results);

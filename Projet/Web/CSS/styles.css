@@ -375,7 +375,51 @@ h2{
   /*letter-spacing: 4px;*/
   font: normal 18px/1 Verdana, Helvetica;
 }
+/*CSS admininistatrion*/
+a#admin{
+  display: inline-block;
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
+  background-image: -webkit-linear-gradient(top, #fff, #eee);
+  background-image: -moz-linear-gradient(top, #fff, #eee);
+  background-image: -ms-linear-gradient(top, #fff, #eee);
+  background-image: -o-linear-gradient(top, #fff, #eee);
+  background-image: linear-gradient(top, #fff, #eee);
+  margin: 5px 5px 5px 5px;
+  padding: 10px;
+  position: relative;
+  z-index: 0;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  text-align: center;
+}
+a#admin:before
+{
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border: 1px dashed #ccc;
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    -moz-box-shadow: 0 0 0 1px #fff;
+    -webkit-box-shadow: 0 0 0 1px #fff;
+    box-shadow: 0 0 0 1px #fff;
+}
 
+#admin:hover,#admin:focus
+{
+    background-color: #fddb6f;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ffb94b), to(#fddb6f));
+    background-image: -webkit-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: -moz-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: -ms-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: -o-linear-gradient(top, #ffb94b, #fddb6f);
+    background-image: linear-gradient(top, #ffb94b, #fddb6f);
+    text-decoration: none;
+}
 /*CSS de connexion/inscription*/
 
 /*--------------------*/
@@ -388,6 +432,13 @@ h2{
 #search{
   z-index: 1;
 }
+
+#addfilm{
+
+}
+
+
+
 
 #form{
   margin: 50px 0 30px -230px;
@@ -463,6 +514,7 @@ h2{
     font: normal 26px/1 Verdana, Helvetica;
     position: relative;
     padding-bottom: 0;
+    padding-top: 0;
 }
 
 
@@ -475,7 +527,7 @@ h2{
     position: absolute;
     top: 15px;
 }
-#register h1:after, #register h1:before{
+/*#register h1:after, #register h1:before{
   width: 110px;
 }
 #login h1:after, #login h1:before{
@@ -500,14 +552,15 @@ h2{
     background-image: -ms-linear-gradient(right, #777, #fff);
     background-image: -o-linear-gradient(right, #777, #fff);
     background-image: linear-gradient(right, #777, #fff);
-    left: 0;
+    left: 0;*/
 }
 
 /*--------------------*/
 
 fieldset
 {
-    border: 0;
+  border-width: 0;
+  border-style: none;
     padding: 0;
     margin: 0;
 }
@@ -516,7 +569,7 @@ fieldset
 
 #inputs input
 {
-    background: #f1f1f1 url(/dist/uploads/2011/09/login-sprite.png) no-repeat;
+    background: #f1f1f1;
     padding: 15px 15px 15px 30px;
     margin: 0 0 10px 0;
     width: 353px; /* 353 + 2 + 45 = 400 */

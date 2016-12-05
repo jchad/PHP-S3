@@ -24,7 +24,7 @@
             $erreur='Les deux mots de passe ne sont pas identiques.';
           }
           else{
-            if($log!=0){
+            if($log!=NULL){
               $erreur="Login indisponible";
             }else{
               require("Model/MailManager.php");
